@@ -1,0 +1,229 @@
+import React, { useState } from "react";
+import HTMLReactParser from "html-react-parser";
+import { useParams } from "react-router-dom";
+import millify from "millify";
+import {
+  MoneyCollectOutlined,
+  DollarCircleOutlined,
+  FundOutlined,
+  ExclamationCircleOutlined,
+  StopOutlined,
+  TrophyOutlined,
+  CheckOutlined,
+  NumberOutlined,
+  ThunderboltOutlined,
+} from "@ant-design/icons";
+
+import {
+  useGetCryptoDetailsQuery,
+  useGetCryptoHistoryQuery,
+} from "../services/cryptoApi";
+import { LineChart, Loader } from ".";
+
+const CryptoDetails = () => {
+  const { coinId } = useParams();
+  const [timeperiod, setTimeperiod] = useState("7d");
+  const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({
+    coinId,
+    timeperiod,
+  });
+  const cryptoDetails = data?.data?.coin;
+
+  if (isFetching) return <Loader />;
+
+  const time = ["24h", "7d", "30d", "1y", "5y"];
+
+  const stats = [
+    {
+      title: "Price to USD",
+      value: `$ ${cryptoDetails.price && millify(cryptoDetails.price)}`,
+      icon: <DollarCircleOutlined />,
+    },
+    { title: "Rank", value: cryptoDetails.rank, icon: <NumberOutlined /> },
+    {
+      title: "24h Volume",
+      value: `$ ${cryptoDetails.volume && millify(cryptoDetails.volume)}`,
+      icon: <ThunderboltOutlined />,
+    },
+    {
+      title: "Market Cap",
+      value: `$ ${cryptoDetails.marketCap && millify(cryptoDetails.marketCap)}`,
+      icon: <DollarCircleOutlined />,
+    },
+    {
+      title: "All-time-high(daily avg.)",
+      value: `$ ${millify(cryptoDetails.allTimeHigh.price)}`,
+      icon: <TrophyOutlined />,
+    },
+  ];
+
+  const genericStats = [
+    {
+      title: "Number Of Markets",
+      value: cryptoDetails.numberOfMarkets,
+      icon: <FundOutlined />,
+    },
+    {
+      title: "Number Of Exchanges",
+      value: cryptoDetails.numberOfExchanges,
+      icon: <MoneyCollectOutlined />,
+    },
+    {
+      title: "Aprroved Supply",
+      value: cryptoDetails.approvedSupply ? (
+        <CheckOutlined />
+      ) : (
+        <StopOutlined />
+      ),
+      icon: <ExclamationCircleOutlined />,
+    },
+    {
+      title: "Total Supply",
+      value: `$ ${millify(cryptoDetails.totalSupply)}`,
+      icon: <ExclamationCircleOutlined />,
+    },
+    {
+      title: "Circulating Supply",
+      value: `$ ${millify(cryptoDetails.circulatingSupply)}`,
+      icon: <ExclamationCircleOutlined />,
+    },
+  ];
+
+  return (
+    <div className="grid grid-cols-1 gap-10">
+      <div className="space-y-2">
+        <h1 className="text-3xl font-bold">
+          {data?.data?.coin.name} ({data?.data?.coin.slug}) Price
+        </h1>
+
+        <p>
+          {cryptoDetails.name} live price in US Dollar (USD). View value
+          statistics, market cap and supply.
+        </p>
+      </div>
+      <div className="flex lg:items-center justify-between flex-col lg:flex-row space-y-10 lg:space-y-0">
+        <div class="shadow stats">
+          <div class="stat bg-primary text-primary-content">
+            <div class="stat-title">Current {cryptoDetails.name} Price</div>
+            <div class="stat-value">
+              ${millify(cryptoDetails.price, { precision: 5 })}
+            </div>
+            <div class="stat-desc">{coinHistory?.data?.change}%</div>
+          </div>
+        </div>
+
+        <select
+          className="select select-bordered select-primary select-lg"
+          onChange={(e) => setTimeperiod(e.target.value)}
+          value={timeperiod}
+        >
+          {time.map((date, i) => (
+            <option value={date} key={i}>
+              {date}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <LineChart
+        coinHistory={coinHistory}
+        currentPrice={millify(cryptoDetails.price)}
+        coinName={cryptoDetails.name}
+      />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="space-y-5">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-primary">
+              {cryptoDetails.name} Value Statistics
+            </h2>
+
+            <p>
+              An overview showing the statistics of {cryptoDetails.name}, such
+              as the base and quote currency, the rank, and trading volume.
+            </p>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="table w-full">
+              <tbody>
+                {stats.map(({ icon, title, value }) => (
+                  <tr>
+                    <th className="flex items-center space-x-2">
+                      {icon}
+                      <span>{title}</span>
+                    </th>
+                    <td className="text-right">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div className="space-y-5">
+          <div className="space-y-2">
+            <h2 className="text-2xl font-bold text-primary">
+              Other Stats Info
+            </h2>
+            <p>
+              An overview showing the statistics of {cryptoDetails.name}, such
+              as the base and quote currency, the rank, and trading volume.
+            </p>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="table w-full">
+              <tbody>
+                {genericStats.map(({ icon, title, value }) => (
+                  <tr>
+                    <th className="flex items-center space-x-2">
+                      {icon}
+                      <span>{title}</span>
+                    </th>
+                    <td className="text-right">{value}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          <h2 className="text-2xl font-bold text-primary">
+            What is {cryptoDetails.name}?
+          </h2>
+          {HTMLReactParser(cryptoDetails.description)}
+        </div>
+        <div className="space-y-5">
+          <h2 className="text-2xl font-bold text-primary">
+            {cryptoDetails.name} Links
+          </h2>
+
+          <div class="overflow-x-auto">
+            <table class="table w-full">
+              <tbody>
+                {cryptoDetails.links?.map((link) => (
+                  <tr key={link.name}>
+                    <th>{link.type}</th>
+                    <td className="text-right">
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="link link-primary"
+                      >
+                        {link.name}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CryptoDetails;
