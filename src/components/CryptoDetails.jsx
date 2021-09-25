@@ -95,7 +95,7 @@ const CryptoDetails = () => {
     <div className="grid grid-cols-1 gap-10">
       <div className="space-y-2">
         <h1 className="text-3xl font-bold">
-          {data?.data?.coin.name} ({data?.data?.coin.slug}) Price
+          {data?.data?.coin.name} ({data?.data?.coin.slug})
         </h1>
 
         <p>
