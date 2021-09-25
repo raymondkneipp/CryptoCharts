@@ -195,7 +195,9 @@ const CryptoDetails = () => {
           <h2 className="text-2xl font-bold text-primary">
             What is {cryptoDetails.name}?
           </h2>
-          {HTMLReactParser(cryptoDetails.description)}
+          <div className="space-y-5">
+            {HTMLReactParser(cryptoDetails.description)}
+          </div>
         </div>
         <div className="space-y-5">
           <h2 className="text-2xl font-bold text-primary">
