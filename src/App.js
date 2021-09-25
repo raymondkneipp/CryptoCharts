@@ -9,14 +9,13 @@ import {
   News,
   CryptoDetails,
 } from "./components";
-import "./App.css";
 
 const App = () => {
   return (
-    <div className="grid grid-flow-row gap-10 pt-10">
+    <div className="grid grid-flow-row gap-10">
       <Navbar />
 
-      <main className="container m-auto px-5">
+      <main className="container m-auto px-2">
         <div className="grid grid-flow-row gap-10">
           <Switch>
             <Route exact path="/">
