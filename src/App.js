@@ -12,6 +12,8 @@ import {
 import "./App.css";
 
 const App = () => {
+  console.log(process.env.REACT_APP_TEST);
+
   return (
     <div className="grid grid-flow-row gap-10 pt-10">
       <Navbar />
