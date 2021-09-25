@@ -28,7 +28,7 @@ const Cryptocurrencies = ({ simplified }) => {
         <input
           type="text"
           placeholder="Search Cryptocurrency"
-          className="input input-bordered input-lg input-primary rounded-box"
+          className="input input-bordered input-lg rounded-box"
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       )}

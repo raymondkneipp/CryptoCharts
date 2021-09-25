@@ -24,7 +24,7 @@ const News = ({ simplified }) => {
       {!simplified && (
         <>
           <select
-            className="select select-bordered select-primary w-full select-lg"
+            className="select select-bordered w-full select-lg"
             onChange={(e) => setNewsCategory(e.target.value)}
             value={newsCategory}
           >

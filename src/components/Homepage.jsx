@@ -16,7 +16,7 @@ const Homepage = () => {
       <h1 className="text-3xl font-bold">Global Crypto Stats</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
         <div className="shadow stats">
-          <div className="stat bg-primary text-primary-content">
+          <div className="stat bg-base-200 text-base-content">
             <div class="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +35,7 @@ const Homepage = () => {
         </div>
 
         <div className="shadow stats">
-          <div className="stat bg-primary text-primary-content">
+          <div className="stat bg-base-200 text-base-content">
             <div class="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ const Homepage = () => {
         </div>
 
         <div className="shadow stats">
-          <div className="stat bg-primary text-primary-content">
+          <div className="stat bg-base-200 text-base-content">
             <div class="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -85,7 +85,7 @@ const Homepage = () => {
         </div>
 
         <div className="shadow stats">
-          <div className="stat bg-primary text-primary-content">
+          <div className="stat bg-base-200 text-base-content">
             <div class="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +110,7 @@ const Homepage = () => {
         </div>
 
         <div className="shadow stats">
-          <div className="stat bg-primary text-primary-content">
+          <div className="stat bg-base-200 text-base-content">
             <div class="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -138,7 +138,7 @@ const Homepage = () => {
       <div className="flex items-start justify-between flex-col space-y-5 sm:space-y-0 sm:flex-row sm:items-center">
         <h2 className="text-2xl font-bold">Top 10 Cryptocurrencies</h2>
 
-        <Link className="btn btn-primary btn-outline" to="/cryptocurrencies">
+        <Link className="btn btn-primary btn-lg" to="/cryptocurrencies">
           Show More
         </Link>
       </div>
@@ -148,7 +148,7 @@ const Homepage = () => {
       <div className="flex items-start justify-between flex-col space-y-5 sm:space-y-0 sm:flex-row sm:items-center">
         <h2 className="text-2xl font-bold">Latest Crypto News</h2>
 
-        <Link className="btn btn-primary btn-outline" to="/news">
+        <Link className="btn btn-primary btn-lg" to="/news">
           Show More
         </Link>
       </div>

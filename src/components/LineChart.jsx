@@ -27,8 +27,8 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
         label: "Price in USD",
         data: coinPrice,
         fill: false,
-        backgroundColor: "#fff",
-        borderColor: "#fff",
+        backgroundColor: "#FF7596",
+        borderColor: "#FF7596",
       },
     ],
   };
@@ -37,7 +37,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
     maintainAspectRatio: false,
     elements: {
       line: {
-        tension: 0.4,
+        tension: 0,
         borderJoinStyle: "round",
       },
       point: {
@@ -52,25 +52,24 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
     scales: {
       y: {
         grid: {
-          color: "#ffffff10",
+          color: "#FF759620",
         },
         beginAtZero: false,
         ticks: {
-          // Include a dollar sign in the ticks
           callback: function (value, index, values) {
             return millify(value);
           },
           padding: 0,
-          color: "#fff",
+          color: "#FF7596",
         },
       },
       x: {
         grid: {
-          color: "#ffffff00",
+          color: "#FF759620",
         },
         ticks: {
           padding: 0,
-          color: "#fff",
+          color: "#FF7596",
         },
       },
     },
