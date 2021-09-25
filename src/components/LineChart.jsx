@@ -1,15 +1,23 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
+import millify from "millify";
+import moment from "moment";
 
-const LineChart = ({ coinHistory }) => {
+const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+  for (
+    let i = 0;
+    i < coinHistory?.data?.history?.length;
+    i += (timeIndex + 1) * (timeIndex + 2)
+  ) {
     coinPrice.push(coinHistory.data.history[i].price);
-    coinTimestamp.push(
-      new Date(coinHistory.data.history[i].timestamp).toLocaleDateString()
-    );
+
+    let d = new Date(coinHistory.data.history[i].timestamp);
+    d = moment(d).format(timeFormat[timeIndex]);
+
+    coinTimestamp.push(d);
   }
 
   const data = {
@@ -26,18 +34,53 @@ const LineChart = ({ coinHistory }) => {
   };
 
   const options = {
+    maintainAspectRatio: false,
+    elements: {
+      line: {
+        tension: 0.4,
+        borderJoinStyle: "round",
+      },
+      point: {
+        rotation: 0,
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-          },
+      y: {
+        grid: {
+          color: "#ffffff10",
         },
-      ],
+        beginAtZero: false,
+        ticks: {
+          // Include a dollar sign in the ticks
+          callback: function (value, index, values) {
+            return millify(value);
+          },
+          padding: 0,
+          color: "#fff",
+        },
+      },
+      x: {
+        grid: {
+          color: "#ffffff00",
+        },
+        ticks: {
+          padding: 0,
+          color: "#fff",
+        },
+      },
     },
   };
 
-  return <Line data={data} options={options} />;
+  return (
+    <div style={{ minHeight: "90vh" }}>
+      <Line data={data} options={options} />
+    </div>
+  );
 };
 
 export default LineChart;

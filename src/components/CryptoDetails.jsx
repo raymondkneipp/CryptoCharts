@@ -33,6 +33,7 @@ const CryptoDetails = () => {
   if (isFetching) return <Loader />;
 
   const time = ["24h", "7d", "30d", "1y", "5y"];
+  const timeFormat = ["LT", "Do", "MMM Do", "MMM Do YY", "MMM Do YY"];
 
   const stats = [
     {
@@ -130,6 +131,8 @@ const CryptoDetails = () => {
         coinHistory={coinHistory}
         currentPrice={millify(cryptoDetails.price)}
         coinName={cryptoDetails.name}
+        timeFormat={timeFormat}
+        timeIndex={time.indexOf(timeperiod)}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
