@@ -136,9 +136,7 @@ const Homepage = () => {
       </div>
 
       <div className="flex items-start justify-between flex-col space-y-5 sm:space-y-0 sm:flex-row sm:items-center">
-        <h2 className="text-2xl font-bold">
-          Top 10 Cryptocurrencies in the world
-        </h2>
+        <h2 className="text-2xl font-bold">Top 10 Cryptocurrencies</h2>
 
         <Link className="btn btn-primary btn-outline" to="/cryptocurrencies">
           Show More
