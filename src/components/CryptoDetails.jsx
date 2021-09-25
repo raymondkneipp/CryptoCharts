@@ -103,13 +103,13 @@ const CryptoDetails = () => {
         </p>
       </div>
       <div className="flex lg:items-center justify-between flex-col lg:flex-row space-y-10 lg:space-y-0">
-        <div class="shadow stats">
-          <div class="stat bg-primary text-primary-content">
-            <div class="stat-title">Current {cryptoDetails.name} Price</div>
-            <div class="stat-value">
+        <div className="shadow stats">
+          <div className="stat bg-primary text-primary-content">
+            <div className="stat-title">Current {cryptoDetails.name} Price</div>
+            <div className="stat-value">
               ${millify(cryptoDetails.price, { precision: 5 })}
             </div>
-            <div class="stat-desc">{coinHistory?.data?.change}%</div>
+            <div className="stat-desc">{coinHistory?.data?.change}%</div>
           </div>
         </div>
 
@@ -144,11 +144,11 @@ const CryptoDetails = () => {
               as the base and quote currency, the rank, and trading volume.
             </p>
           </div>
-          <div class="overflow-x-auto">
-            <table class="table w-full">
+          <div className="overflow-x-auto">
+            <table className="table w-full">
               <tbody>
                 {stats.map(({ icon, title, value }) => (
-                  <tr>
+                  <tr key={title}>
                     <th className="flex items-center space-x-2">
                       {icon}
                       <span>{title}</span>
@@ -171,11 +171,11 @@ const CryptoDetails = () => {
             </p>
           </div>
 
-          <div class="overflow-x-auto">
-            <table class="table w-full">
+          <div className="overflow-x-auto">
+            <table className="table w-full">
               <tbody>
                 {genericStats.map(({ icon, title, value }) => (
-                  <tr>
+                  <tr key={title}>
                     <th className="flex items-center space-x-2">
                       {icon}
                       <span>{title}</span>
@@ -199,11 +199,11 @@ const CryptoDetails = () => {
             {cryptoDetails.name} Links
           </h2>
 
-          <div class="overflow-x-auto">
-            <table class="table w-full">
+          <div className="overflow-x-auto">
+            <table className="table w-full">
               <tbody>
-                {cryptoDetails.links?.map((link) => (
-                  <tr key={link.name}>
+                {cryptoDetails.links?.map((link, i) => (
+                  <tr key={`${link.name} ${i}`}>
                     <th>{link.type}</th>
                     <td className="text-right">
                       <a

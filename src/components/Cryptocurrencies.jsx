@@ -41,7 +41,7 @@ const Cryptocurrencies = ({ simplified }) => {
           >
             <div className="card shadow-xl image-full flex-1">
               <figure>
-                <img src={currency.iconUrl} />
+                <img src={currency.iconUrl} alt={currency.name} />
               </figure>
               <div className="justify-end card-body">
                 <h2 className="card-title">{`${currency.rank}. ${currency.name}`}</h2>
