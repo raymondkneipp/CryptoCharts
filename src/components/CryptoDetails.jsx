@@ -22,7 +22,7 @@ import { LineChart, Loader } from ".";
 
 const CryptoDetails = () => {
   const { coinId } = useParams();
-  const [timeperiod, setTimeperiod] = useState("7d");
+  const [timeperiod, setTimeperiod] = useState("24h");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const { data: coinHistory } = useGetCryptoHistoryQuery({
     coinId,
@@ -31,6 +31,8 @@ const CryptoDetails = () => {
   const cryptoDetails = data?.data?.coin;
 
   if (isFetching) return <Loader />;
+
+  console.log(coinHistory);
 
   const time = ["24h", "7d", "30d", "1y", "5y"];
   const timeFormat = ["LT", "Do", "MMM Do", "MMM Do YY", "MMM Do YY"];
@@ -133,6 +135,7 @@ const CryptoDetails = () => {
         coinName={cryptoDetails.name}
         timeFormat={timeFormat}
         timeIndex={time.indexOf(timeperiod)}
+        change={coinHistory?.data?.change}
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

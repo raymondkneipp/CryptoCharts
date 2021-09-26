@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import millify from "millify";
 import moment from "moment";
 
-const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
+const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
@@ -20,6 +20,8 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
     coinTimestamp.push(d);
   }
 
+  let theme = change >= 0 ? "#1DB853" : "#FE6F6F";
+
   const data = {
     labels: coinTimestamp,
     datasets: [
@@ -27,8 +29,8 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
         label: "Price in USD",
         data: coinPrice,
         fill: false,
-        backgroundColor: "#FF7596",
-        borderColor: "#FF7596",
+        backgroundColor: theme,
+        borderColor: theme,
       },
     ],
   };
@@ -52,7 +54,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
     scales: {
       y: {
         grid: {
-          color: "#FF759620",
+          color: `${theme}20`,
         },
         beginAtZero: false,
         ticks: {
@@ -60,16 +62,16 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex }) => {
             return millify(value);
           },
           padding: 0,
-          color: "#FF7596",
+          color: theme,
         },
       },
       x: {
         grid: {
-          color: "#FF759620",
+          color: `${theme}20`,
         },
         ticks: {
           padding: 0,
-          color: "#FF7596",
+          color: theme,
         },
       },
     },
