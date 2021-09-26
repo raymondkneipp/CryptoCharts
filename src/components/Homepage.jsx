@@ -17,18 +17,18 @@ const Homepage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5">
         <div className="shadow stats">
           <div className="stat bg-base-200 text-base-content">
-            <div class="stat-figure text-primary-content">
+            <div className="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 512 512"
-                className="fill-current w-10 h-10"
+                className="fill-current w-10 h-10 text-warning"
               >
                 <path d="M256.198 0C114.804-.119.119 114.408 0 255.802S114.408 511.881 255.802 512c141.375-.119 255.98-114.625 256.198-256C512 114.685 397.513.119 256.198 0zm-.396 469.4c-117.855 0-213.399-95.545-213.399-213.4S137.947 42.601 255.802 42.601c117.815.119 213.28 95.584 213.399 213.399 0 117.855-95.544 213.4-213.399 213.4z"></path>
                 <path d="M324.954 243.517c17.12-9.65 26.373-28.968 23.183-48.347-3.963-29.919-39.628-41.214-67.765-43.591v-44.978h-27.74v44.582h-18.625v-44.582h-27.74v44.582H150.39v28.731h20.805c9.313 0 13.87 2.774 13.87 10.303V313.66c0 10.303-5.152 13.474-10.7 13.474h-21.201v29.325h53.895v45.573h27.938v-45.573h18.625v45.573h27.146v-45.573h5.944c57.065 0 76.087-27.938 76.087-65.981-.456-22.431-16.01-41.73-37.845-46.961zm-90.948-61.82h19.814c13.87 0 41.214 2.378 41.214 24.966.951 14.742-9.729 27.661-24.372 29.523h-36.656v-54.489zm30.712 142.662v-.198h-30.712v-59.443h35.666c8.322 0 39.628 2.774 39.628 24.966s-14.86 34.675-44.582 34.675z"></path>
               </svg>
             </div>
             <div className="stat-title">Total Cryptos</div>
-            <div className="stat-value">
+            <div className="stat-value text-warning">
               {millify(globalStats.total, { precision: 2 })}
             </div>
           </div>
@@ -36,10 +36,10 @@ const Homepage = () => {
 
         <div className="shadow stats">
           <div className="stat bg-base-200 text-base-content">
-            <div class="stat-figure text-primary-content">
+            <div className="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10"
+                className="h-10 w-10 text-info"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -53,7 +53,7 @@ const Homepage = () => {
               </svg>
             </div>
             <div className="stat-title">Total Exchanges</div>
-            <div className="stat-value">
+            <div className="stat-value text-info">
               {millify(globalStats.totalExchanges)}
             </div>
           </div>
@@ -61,10 +61,10 @@ const Homepage = () => {
 
         <div className="shadow stats">
           <div className="stat bg-base-200 text-base-content">
-            <div class="stat-figure text-primary-content">
+            <div className="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10"
+                className="h-10 w-10 text-success"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -78,15 +78,15 @@ const Homepage = () => {
               </svg>
             </div>
             <div className="stat-title">Total Market Cap</div>
-            <div className="stat-value">
-              {millify(globalStats.totalMarketCap, { precision: 2 })}
+            <div className="stat-value text-success">
+              ${millify(globalStats.totalMarketCap, { precision: 2 })}
             </div>
           </div>
         </div>
 
         <div className="shadow stats">
           <div className="stat bg-base-200 text-base-content">
-            <div class="stat-figure text-primary-content">
+            <div className="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-10 w-10"
@@ -111,10 +111,10 @@ const Homepage = () => {
 
         <div className="shadow stats">
           <div className="stat bg-base-200 text-base-content">
-            <div class="stat-figure text-primary-content">
+            <div className="stat-figure text-primary-content">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10"
+                className="h-10 w-10 text-error"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -128,7 +128,7 @@ const Homepage = () => {
               </svg>
             </div>
             <div className="stat-title">Total Markets</div>
-            <div className="stat-value">
+            <div className="stat-value text-error">
               {millify(globalStats.totalMarkets, { precision: 2 })}
             </div>
           </div>

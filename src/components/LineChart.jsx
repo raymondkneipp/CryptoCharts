@@ -20,7 +20,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
     coinTimestamp.push(d);
   }
 
-  let theme = change >= 0 ? "#1DB853" : "#FE6F6F";
+  let theme = change >= 0 ? "#86D038" : "#FE6F6F";
 
   const data = {
     labels: coinTimestamp,

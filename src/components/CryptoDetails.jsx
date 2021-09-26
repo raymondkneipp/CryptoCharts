@@ -32,8 +32,6 @@ const CryptoDetails = () => {
 
   if (isFetching) return <Loader />;
 
-  console.log(coinHistory);
-
   const time = ["24h", "7d", "30d", "1y", "5y"];
   const timeFormat = ["LT", "Do", "MMM Do", "MMM Do YY", "MMM Do YY"];
 
@@ -55,7 +53,7 @@ const CryptoDetails = () => {
       icon: <DollarCircleOutlined />,
     },
     {
-      title: "All-time-high(daily avg.)",
+      title: "All-time-high",
       value: `$ ${millify(cryptoDetails.allTimeHigh.price)}`,
       icon: <TrophyOutlined />,
     },
@@ -110,7 +108,7 @@ const CryptoDetails = () => {
           <div className="stat bg-primary text-primary-content">
             <div className="stat-title">Current {cryptoDetails.name} Price</div>
             <div className="stat-value">
-              ${millify(cryptoDetails.price, { precision: 5 })}
+              $ {millify(cryptoDetails.price, { precision: 5 })}
             </div>
             <div className="stat-desc">{coinHistory?.data?.change}%</div>
           </div>

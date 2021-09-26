@@ -37,7 +37,7 @@ const News = ({ simplified }) => {
           </select>
         </>
       )}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 xl:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {cryptoNews.value.map((news, i) => (
           <a
             className="flex"
@@ -63,7 +63,7 @@ const News = ({ simplified }) => {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between space-x-2">
                   <div className="flex items-center space-x-2">
                     <img
                       src={

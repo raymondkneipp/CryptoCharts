@@ -45,9 +45,47 @@ const Cryptocurrencies = ({ simplified }) => {
               </figure>
               <div className="justify-end card-body">
                 <h2 className="card-title">{`${currency.rank}. ${currency.name}`}</h2>
-                <p>Price: {millify(currency.price)}</p>
-                <p>Market Cap: {millify(currency.marketCap)}</p>
-                <p>Daily Change: {millify(currency.change)}%</p>
+                <div className="flex flex-row items-center justify-between">
+                  <p>$ {millify(currency.price, { precision: 3 })}</p>
+                  <p
+                    className={`flex items-center ${
+                      currency.change >= 0 ? "text-success" : "text-error"
+                    }`}
+                  >
+                    {currency.change >= 0 ? (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
+                        />
+                      </svg>
+                    ) : (
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5 mr-2"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"
+                        />
+                      </svg>
+                    )}{" "}
+                    {millify(currency.change, { precision: 1 })}%
+                  </p>
+                </div>
               </div>
             </div>
           </Link>

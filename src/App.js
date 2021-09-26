@@ -37,7 +37,7 @@ const App = () => {
         </div>
       </main>
 
-      <footer className="p-10 footer bg-base-200 text-base-content footer-center">
+      <footer className="p-10 footer bg-primary text-primary-content footer-center">
         <div className="grid grid-flow-col gap-4">
           <Link className="link link-hover" to="/">
             Home
