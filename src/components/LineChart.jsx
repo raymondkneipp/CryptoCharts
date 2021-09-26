@@ -87,7 +87,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
   return (
     <div
       style={{ minHeight: "90vh" }}
-      className="border border-neutral shadow-xl rounded-box"
+      className="border border-neutral shadow-xl rounded-box select-none"
     >
       <Line data={data} options={options} />
     </div>
