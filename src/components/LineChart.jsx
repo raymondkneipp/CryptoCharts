@@ -7,7 +7,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
+  for (let i = 0; i < coinHistory?.data?.history?.length; i += 10) {
     coinPrice.push(coinHistory.data.history[i].price);
 
     let d = new Date(coinHistory.data.history[i].timestamp);
