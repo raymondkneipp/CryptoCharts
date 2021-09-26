@@ -7,11 +7,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
   const coinPrice = [];
   const coinTimestamp = [];
 
-  for (
-    let i = 0;
-    i < coinHistory?.data?.history?.length;
-    i += (timeIndex + 1) * (timeIndex + 2)
-  ) {
+  for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
     coinPrice.push(coinHistory.data.history[i].price);
 
     let d = new Date(coinHistory.data.history[i].timestamp);
@@ -39,46 +35,60 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
     maintainAspectRatio: false,
     elements: {
       line: {
-        tension: 0,
+        tension: 0.5,
         borderJoinStyle: "round",
       },
       point: {
         rotation: 0,
+        radius: 0,
       },
     },
     plugins: {
       legend: {
         display: false,
       },
+      tooltips: {
+        mode: "index",
+        intersect: false,
+      },
+    },
+    interaction: {
+      mode: "nearest",
+      intersect: false,
     },
     scales: {
       y: {
         grid: {
-          color: `${theme}20`,
+          color: `${theme}00`,
         },
         beginAtZero: false,
         ticks: {
           callback: function (value, index, values) {
             return millify(value);
           },
+          display: false,
           padding: 0,
           color: theme,
         },
       },
       x: {
         grid: {
-          color: `${theme}20`,
+          color: `${theme}00`,
         },
         ticks: {
           padding: 0,
           color: theme,
+          display: false,
         },
       },
     },
   };
 
   return (
-    <div style={{ minHeight: "90vh" }}>
+    <div
+      style={{ minHeight: "90vh" }}
+      className="border border-neutral shadow-xl rounded-box"
+    >
       <Line data={data} options={options} />
     </div>
   );
