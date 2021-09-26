@@ -105,7 +105,11 @@ const CryptoDetails = () => {
       </div>
       <div className="flex lg:items-center justify-between flex-col lg:flex-row space-y-10 lg:space-y-0">
         <div className="shadow stats">
-          <div className="stat bg-primary text-primary-content">
+          <div
+            className={`stat text-primary-content ${
+              coinHistory?.data?.change >= 0 ? "bg-success" : "bg-error"
+            }`}
+          >
             <div className="stat-title">Current {cryptoDetails.name} Price</div>
             <div className="stat-value">
               $ {millify(cryptoDetails.price, { precision: 5 })}
