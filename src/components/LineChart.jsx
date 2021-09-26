@@ -53,7 +53,7 @@ const LineChart = ({ coinHistory, timeFormat, timeIndex, change }) => {
       },
     },
     interaction: {
-      mode: "nearest",
+      mode: "x",
       intersect: false,
     },
     scales: {
