@@ -77,10 +77,14 @@ const Exchanges = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       document.body.style.position = "fixed";
+                      document.body.style.top = `-${window.scrollY}px`;
                       document.body.style.left = 0;
                       document.body.style.right = 0;
                     } else {
-                      document.body.style.position = "static";
+                      const scrollY = document.body.style.top;
+                      document.body.style.position = "";
+                      document.body.style.top = "";
+                      window.scrollTo(0, parseInt(scrollY || "0") * -1);
                     }
                   }}
                 />
